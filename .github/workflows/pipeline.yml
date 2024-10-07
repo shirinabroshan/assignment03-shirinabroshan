@@ -39,6 +39,10 @@ jobs:
 
       # Publish results
       - name: Save test results as artifacts
+        env:
+          TESTUSERNAME: ${{secrets.TESTUSERNAME}}
+          TESTPASSWORD: ${{secrets.TESTPASSWORD}}
+          
         uses: actions/upload-artifact@v4
         with:
           name: playwright-test-results

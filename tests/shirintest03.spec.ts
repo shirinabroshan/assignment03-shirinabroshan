@@ -10,8 +10,8 @@ test.describe('Frontend testsuite', () => {
   test('create client', async ({ page }) => {
     //inlogning
     await page.goto(`http://localhost:3000`);
-    await page.locator('#app > div > form > div:nth-child(1) > input[type="text"]').fill(`${process.env.TEST_USERNAME}`);
-    await page.locator('#app > div > form > div:nth-child(2) > input[type=password]').fill(`${process.env.TEST_PASSWORD}`);
+    await page.locator('#app > div > form > div:nth-child(1) > input[type="text"]').fill(`${process.env.TESTUSERNAME}`);
+    await page.locator('#app > div > form > div:nth-child(2) > input[type=password]').fill(`${process.env.TESTPASSWORD}`);
     await page.locator('#app > div > form > div.field.action > button').click();
 
     await expect(page.getByRole('heading', { name: 'Tester Hotel Overview' })).toBeVisible()
@@ -26,8 +26,8 @@ test.describe('Frontend testsuite', () => {
   test('Edit client01', async ({ page }) => {
     //inlogning
     await page.goto(`http://localhost:3000`);
-    await page.locator('#app > div > form > div:nth-child(1) > input[type="text"]').fill(`${process.env.TEST_USERNAME}`);
-    await page.locator('#app > div > form > div:nth-child(2) > input[type=password]').fill(`${process.env.TEST_PASSWORD}`);
+    await page.locator('#app > div > form > div:nth-child(1) > input[type="text"]').fill(`${process.env.TESTUSERNAME}`);
+    await page.locator('#app > div > form > div:nth-child(2) > input[type=password]').fill(`${process.env.TESTPASSWORD}`);
     await page.locator('#app > div > form > div.field.action > button').click();
 
     await expect(page.getByRole('heading', { name: 'Tester Hotel Overview' })).toBeVisible()
@@ -52,8 +52,8 @@ test.describe('Backend testsuite', () => {
     // Gör login-förfrågan och få token
     const loginResponse = await request.post('http://localhost:3000/api/login', {
       data: {
-        username: process.env.TEST_USERNAME,
-        password: process.env.TEST_PASSWORD
+        username: process.env.TESTUSERNAME,
+        password: process.env.TESTPASSWORD
       }
     });
     expect(loginResponse.ok()).toBeTruthy();
@@ -67,7 +67,7 @@ test.describe('Backend testsuite', () => {
       headers: {
         'Content-Type': 'application/json',
         'x-user-auth': JSON.stringify({
-          username: process.env.TEST_USERNAME,
+          username: process.env.TESTUSERNAME,
           token: token
         })
       }
@@ -80,8 +80,8 @@ test.describe('Backend testsuite', () => {
     // Gör login-förfrågan och få token
     const loginResponse = await request.post('http://localhost:3000/api/login', {
       data: {
-        username: process.env.TEST_USERNAME,
-        password: process.env.TEST_PASSWORD
+        username: process.env.TESTUSERNAME,
+        password: process.env.TESTPASSWORD
       }
     });
     expect(loginResponse.ok()).toBeTruthy();
@@ -94,7 +94,7 @@ test.describe('Backend testsuite', () => {
       headers: {
         'Content-Type': 'application/json',
         'x-user-auth': JSON.stringify({
-          username: process.env.TEST_USERNAME,
+          username: process.env.TESTUSERNAME,
           token: token
         })
       }
@@ -106,7 +106,7 @@ test.describe('Backend testsuite', () => {
       headers: {
         'Content-Type': 'application/json',
         'x-user-auth': JSON.stringify({
-          username: process.env.TEST_USERNAME,
+          username: process.env.TESTUSERNAME,
           token: token
         })
       },

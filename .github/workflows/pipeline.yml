@@ -35,6 +35,9 @@ jobs:
 
       # Run tests
       - name: Run tests
+        env:
+          TESTUSERNAME: ${{secrets.TESTUSERNAME}}
+          TESTPASSWORD: ${{secrets.TESTPASSWORD}}
         run: npx playwright test
 
       # Publish results

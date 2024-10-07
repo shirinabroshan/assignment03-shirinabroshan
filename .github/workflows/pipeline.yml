@@ -4,43 +4,42 @@ on:
     branches: [ main, gh-actions ]
   pull_request:
     branches: [ main, gh-actions ]
+
 jobs:
   assignmet03-test:
     runs-on: ubuntu-latest
     steps:
-    #checkout
-    - name: Fetch code/checkout code
-    - uses: actions/checkout@v4
+      # Checkout code
+      - name: Fetch code/checkout code
+        uses: actions/checkout@v4
 
-   #install package
-    - name: Install dependencies
-      run: npm install
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
 
-    #install playwright
-    - name: Install Playwright 
-      run: npx playwright install 
+      # Install Playwright
+      - name: Install Playwright
+        run: npx playwright install
 
-    #install docker
-    - name: pull docker image
-      run: docker pull rasilva1986/my-vue-app:v1
+      # Pull Docker image
+      - name: Pull Docker image
+        run: docker pull rasilva1986/my-vue-app:v1
 
-    #starta application
-    - name: starta the application
-      run: docker run -d -p 3000:3000 rasilva1986/my-vue-app:v1
+      # Start the application
+      - name: Start the application
+        run: docker run -d -p 3000:3000 rasilva1986/my-vue-app:v1
 
-    #wait until the application is up
-    - name: wait until  application is up 
-      run: npx wait -on http://localhost:3000
+      # Wait until the application is up
+      - name: Wait until the application is up
+        run: npx wait-on http://localhost:3000
 
-   #run tests   
-    - name: Run tests
-      run: npm plywright test 
+      # Run tests
+      - name: Run tests
+        run: npx playwright test
 
-    #publish results
-    - name: Save test results as artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: playwright-test-results
-        path: playwright-report
-     
-
+      # Publish results
+      - name: Save test results as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-results
+          path: playwright-report

@@ -3,9 +3,6 @@ import { faker } from "@faker-js/faker";
 import dotenv from 'dotenv';
 import { FakerPage } from './pages/faker-page.ts';
 
-
-
-
 test.describe('Frontend testsuite', () => {
   test('create client', async ({ page }) => {
     //inlogning
@@ -22,6 +19,7 @@ test.describe('Frontend testsuite', () => {
     const newclient = new FakerPage(page);
     await newclient.newclientwithfaker();
   });
+
 
   test('Edit client01', async ({ page }) => {
     //inlogning
@@ -101,6 +99,7 @@ test.describe('Backend testsuite', () => {
     });
     expect(deleteResponse.status()).toBe(200);
 
+    
     // Kontrollera att rummet faktiskt har tagits bort genom att göra en GET-förfrågan
     const addRoomResponse = await request.post('http://localhost:3000/api/room/new', {
       headers: {

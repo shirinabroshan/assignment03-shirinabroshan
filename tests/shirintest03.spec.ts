@@ -99,7 +99,6 @@ test.describe('Backend testsuite', () => {
     });
     expect(deleteResponse.status()).toBe(200);
 
-    
     // Kontrollera att rummet faktiskt har tagits bort genom att göra en GET-förfrågan
     const addRoomResponse = await request.post('http://localhost:3000/api/room/new', {
       headers: {

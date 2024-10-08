@@ -22,7 +22,6 @@ export class FakerPage {
     }
 
     //functions
-
     async newclientwithfaker() {
 
         const fullname = faker.person.fullName();
